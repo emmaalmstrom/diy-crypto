@@ -1,5 +1,5 @@
 
-function caeserEncrypt(message) {
+function caeserEncrypt(message, num) {
 
     // översätt varje tecken till ett nummer
     const charCodes = []
@@ -10,7 +10,7 @@ function caeserEncrypt(message) {
 
     // shifta det numret
     for (let i = 0; i < charCodes.length; i++) {
-        charCodes[i] = charCodes[i] + 1
+        charCodes[i] = charCodes[i] + num
 
     }
 
@@ -24,6 +24,35 @@ function caeserEncrypt(message) {
     return encryptedMessage
 }
 
-const secretmessege = "atackatsevenpm"
+function ceasarDecrypted(encryptedMSG, num) {
+    
+    // översätt varje tecken till ett nummer
+    const charCodes = []
 
-console.log(secretmessege, caeserEncrypt(secretmessege))
+    for (let i = 0; i < encryptedMSG.length; i++) {
+        charCodes.push(encryptedMSG[i].charCodeAt(0))
+    }
+
+    // shifta det numret
+    for (let i = 0; i < charCodes.length; i++) {
+        charCodes[i] = charCodes[i] - num
+
+    }
+
+    let decryptedMessage = ""
+    // översätt numret till tecken
+    for (let i = 0; i < charCodes.length; i++) {
+        decryptedMessage = decryptedMessage + String.fromCharCode(charCodes[i])
+
+    }
+    
+    return decryptedMessage
+}
+
+
+const secretmessege = "atackatsevenpm"
+console.log(secretmessege, caeserEncrypt(secretmessege, 0))
+
+const encryptedMsg = caeserEncrypt(secretmessege, 4)
+const decryptedMsg = ceasarDecrypted(encryptedMsg, 4)
+console.log(secretmessege, encryptedMsg, decryptedMsg)
